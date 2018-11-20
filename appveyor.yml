@@ -1,0 +1,15 @@
+branches:
+  only:
+    - master
+environment:
+  nodejs_version: "8"
+  NPM_TOKEN:
+    secure: mnzQMx2AChA/e1ZJTd590T7+RVOGXDVkeA73TMRFMc5+kAjwbzLTZNz8PpDFbPpo
+
+before_build:
+  - npm install
+
+build_script:
+  - npm run build
+  - echo publish package
+  - npm run ci-publish || true
