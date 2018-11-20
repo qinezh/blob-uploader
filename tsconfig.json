@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "lib": [
+      "es2015",
+      "dom"
+    ],
+    "sourceMap": true, /* Generates corresponding '.map' file. */
+    "outDir": "dist", /* Redirect output structure to the directory. */
+    "rootDir": ".", /* Specify the root directory of input files. Use to control the output directory structure with ns */
+    "strict": false /* Enable all strict type-checking options. */
+  },
+  "exclude": [
+    "node_modules/**"
+  ]
+}

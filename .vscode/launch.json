@@ -1,0 +1,23 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Program",
+            "program": "${workspaceFolder}\\bin\\blob-uploader.js",
+            "outFiles": [
+                "${workspaceFolder}/**/*.js"
+            ],
+            "sourceMaps": true,
+            "args": [
+                "--accountName=qinezh",
+                "--accessKey=i2Qr+kAIZfKWRVqbI2s9n6mpGN7Mc/QdHeeDgs9hJGd0Xt7pkukxOa9zLa8UNQ8pGRtmbIHgl3BfjI+4jfr7KQ==",
+                "--containerName=config"
+            ]
+        }
+    ]
+}

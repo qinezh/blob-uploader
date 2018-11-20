@@ -1,0 +1,30 @@
+#!/usr/bin/env node
+
+const program = require("commander");
+const Uploader = require("../dist/lib/uploader.js");
+
+program
+    .version("0.1.0", "-v, --version")
+    .option("--accountName <name>", "Azure storage account name")
+    .option("--accessKey <key>", "Azure storage access key")
+    .option("--containerName <name>", "Azure blob container name")
+    .option("--filePath <file>", "Specify file path to be uploaded")
+    .option("--pattern <pattern>", "Specify file path with glob pattern to be uploaded")
+    .parse(process.argv);
+
+var uploader = new Uploader({
+    accountName: program.accountName,
+    accessKey: program.accessKey,
+    containerName: program.containerName
+});
+
+(async function execute() {
+    if (program.filePath) {
+        await uploader.uploadFile(filePath);
+    }
+    if (program.pattern) {
+        await uploader.uploadFiles(program.pattern);
+    }
+})()
+    .then(() => console.log("Done"))
+    .catch(e => console.log(e));
