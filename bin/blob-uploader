@@ -14,7 +14,7 @@ program
 
 var uploader = new Uploader({
     accountName: program.accountName,
-    accessKey: program.accessKey,
+    accessKey: program.accessKey || process.env["accessKey"],
     containerName: program.containerName
 });
 
