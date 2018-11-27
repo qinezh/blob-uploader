@@ -12,19 +12,26 @@ program
     .option("--pattern <pattern>", "Specify file path with glob pattern to be uploaded")
     .parse(process.argv);
 
-var uploader = new Uploader({
-    accountName: program.accountName,
-    accessKey: program.accessKey || process.env["accessKey"],
-    containerName: program.containerName
-});
+const accountName = program.accountName;
+const accessKey = program.accessKey || process.env["accessKey"];
+const containerName = program.containerName;
 
 (async function execute() {
+    const uploader = new Uploader({
+        accountName: accountName,
+        accessKey: accessKey || process.env["accessKey"],
+        containerName: containerName
+    });
+
     if (program.filePath) {
-        await uploader.uploadFile(filePath);
+        await uploader.uploadFile(program.filePath);
     }
     if (program.pattern) {
         await uploader.uploadFiles(program.pattern);
     }
 })()
     .then(() => console.log("Done"))
-    .catch(e => console.log(e));
+    .catch(err => {
+        console.error(err.message);
+        process.exit(-1);
+    });

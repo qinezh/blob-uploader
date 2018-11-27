@@ -14,9 +14,19 @@ const glob = util.promisify(require('glob'));
 const ABORTER = Aborter.timeout(10 * 60 * 1000);
 
 module.exports = class uploader {
-    private option: Uploadoption;
+    private option: UploadOption;
 
-    constructor(option: Uploadoption) {
+    constructor(option: UploadOption) {
+        if (!option.accountName) {
+            throw new Error("Account name of azure storage can't be null.");
+        }
+        if (!option.containerName) {
+            throw new Error("Container name of azure blob can't be null.");
+        }
+        if (!option.accessKey) {
+            throw new Error("Access key to azure storage can't be null.");
+        }
+
         this.option = option;
     }
 
@@ -74,7 +84,7 @@ module.exports = class uploader {
     }
 }
 
-interface Uploadoption {
+interface UploadOption {
     accountName: string,
     accessKey: string,
     containerName: string
